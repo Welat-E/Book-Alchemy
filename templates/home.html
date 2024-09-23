@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    
+    <!-- Search Form -->
+    <form method="get" action="/">
+        <input type="text" name="query" placeholder="Enter search term">
+        <button type="submit">Search</button>
+    </form>
+    
+    <h2>Books List</h2>
+    
+    {% if books %}
+        <ul>
+            {% for book in books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author.author_name }}
+                    
+                    <!-- Delete Book Form -->
+                    <form action="{{ url_for('delete_book', book_id=book.id) }}" method="post" style="display:inline;">
+                        <button type="submit">Delete Book</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+    
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
