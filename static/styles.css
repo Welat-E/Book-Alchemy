@@ -1,0 +1,106 @@
+/* General styles */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f4f1ea; /* Warm, off-white background like old book pages */
+    color: #333; /* Soft dark color for text */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  
+  /* Header */
+  h1, h2 {
+    color: #4a3f35; /* Deep, warm brown for headers */
+    border-bottom: 2px solid #c7b198;
+    padding-bottom: 5px;
+  }
+  
+  /* Links */
+  a {
+    color: #7b5e57; /* Earthy, brownish-red for links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Forms */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #c7b198;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  button {
+    background-color: #7b5e57;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #5e453c;
+  }
+  
+  /* Navigation */
+  nav a {
+    background-color: #7b5e57;
+    color: white;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  
+  nav a:hover {
+    background-color: #5e453c;
+  }
+  
+  /* Book List */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid #c7b198;
+  }
+  
+  strong {
+    color: #4a3f35;
+  }
+  
+  /* Flash messages */
+  ul.messages {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul.messages li {
+    background-color: #fbe3e3;
+    color: #b94a48;
+    padding: 10px;
+    border-left: 5px solid #b94a48;
+    margin-bottom: 10px;
+  }
+  
