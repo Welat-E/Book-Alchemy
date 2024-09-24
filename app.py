@@ -77,7 +77,7 @@ def add_book():
             isbn=isbn,
             title=title,
             publication_year=publication_year,
-            author_id=author_id,
+            # author_id=author_id,
         )
         db.session.add(new_book)
         db.session.commit()
@@ -86,7 +86,7 @@ def add_book():
 
     # Fetch all authors to populate the dropdown
     authors = Author.query.all()
-    return render_template("add_book.html", authors=authors, success=False)
+    return render_template("add_book.html", book=Book, success=False)
 
 
 @app.route("/sort_books/<sort_by>")
