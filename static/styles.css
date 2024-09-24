@@ -6,8 +6,8 @@ body {
   margin: 0;
   padding: 20px;
   line-height: 1.6;
-  background-image: url("../cozy-bookstore-shelves-brimming-with-books-under-the-warm-library-lights-u5zogtym.jpeg");
-  background-size: contain; /* or 'contain' depending on your preference */
+  background-image: url("cozy-bookstore-shelves-brimming-with-books-under-the-warm-library-lights-u5zogtym.jpeg");
+  background-size: cover; /* or 'contain' depending on your preference */
   background-position: center center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   color: #f5f5f5; 

@@ -30,7 +30,7 @@ class Book(db.Model):
     title = db.Column(db.String)
     publication_year = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey("author.id"))
-    author = db.relationship("Author", backref="books")  # Beziehung hinzufügen
+    author = db.relationship("Author", backref="books")  #add relationship
 
     def __repr__(self):
         return (
