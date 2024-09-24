@@ -40,9 +40,7 @@ class Book(db.Model):
     isbn = db.Column(db.String(30))
     title = db.Column(db.String)
     publication_year = db.Column(db.String)
-    author_id = db.Column(
-        db.Integer, db.ForeignKey("author.id")
-    )
+    author_id = db.Column(db.Integer, db.ForeignKey("author.id"))
     author = db.relationship("Author", backref="books")  # Beziehung hinzufügen
 
     def __repr__(self):
@@ -56,6 +54,7 @@ class Book(db.Model):
             f"Book Title: {self.title}, ISBN: {self.isbn}, "
             f"Publication Year: {self.publication_year}"
         )
+
 
 with app.app_context():
     db.create_all()

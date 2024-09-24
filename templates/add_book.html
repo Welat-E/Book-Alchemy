@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Add Book</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Add a New Book</h1>
-    
+
     {% if success %}
-        <p>Book successfully added!</p>
+    <p>Book successfully added!</p>
     {% endif %}
-    
-    <form action="{{ url_for('add_book') }}" method="post">
-        <label for="isbn">ISBN:</label>
-        <input type="text" id="isbn" name="isbn" required>
-        <br>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
-        <br>
-        <label for="publication_year">Publication Year:</label>
-        <input type="text" id="publication_year" name="publication_year" required>
-        <br>
-        <label for="author_id">Author:</label>
-        <select id="author_id" name="author_id" required>
-            {% for author in authors %}
-                <option value="{{ author.id }}">{{ author.author_name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <button type="submit">Add Book</button>
+
+    <form action="{{ url_for('add_book') }}" method="POST">
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" required />
+      <br />
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required />
+      <br />
+      <label for="publication_year">Publication Year:</label>
+      <input
+        type="text"
+        id="publication_year"
+        name="publication_year"
+        required
+      />
+      <br />
+      <label for="author_id">Author:</label>
+      <select id="author_id" name="author_id" required>
+        {% for author in authors %}
+        <option value="{{ author.id }}">{{ author.author_name }}</option>
+        {% endfor %}
+      </select>
+      <br />
+      <button type="submit">Add Book</button>
     </form>
     <nav>
-        <a href="{{ url_for('home') }}">Back to Home Page</a>
-        <a href="{{ url_for('add_author') }}">Add Author</a>
+      <a href="{{ url_for('home') }}">Back to Home Page</a>
+      <a href="{{ url_for('add_author') }}">Add Author</a>
     </nav>
-</body>
+  </body>
 </html>

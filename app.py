@@ -1,9 +1,11 @@
+import os
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from data_models import db, Author, Book
-import os
+
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.urandom(24)
 db_path = os.path.join(os.path.dirname(__file__), "data", "library.sqlite")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -82,11 +84,12 @@ def add_book():
         db.session.add(new_book)
         db.session.commit()
 
-        return render_template("add_book.html", success=True)
+        flash("Book successfully added!")
+        return redirect(url_for("home"))
 
     # Fetch all authors to populate the dropdown
     authors = Author.query.all()
-    return render_template("add_book.html", book=Book, success=False)
+    return render_template("add_book.html", authors=authors, success=False)
 
 
 @app.route("/sort_books/<sort_by>")

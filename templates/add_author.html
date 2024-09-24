@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Add Author</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Add Author</h1>
-    
+
     {% if success %}
-        <p>Author added successfully!</p>
+    <p>Author added successfully!</p>
     {% endif %}
 
     <form method="POST" action="/add_author">
-        <label for="author_name">Author Name:</label>
-        <input type="text" id="author_name" name="author_name" required><br><br>
+      <label for="author_name">Author Name:</label>
+      <input
+        type="text"
+        id="author_name"
+        name="author_name"
+        required
+      /><br /><br />
 
-        <label for="birth_date">Birth Date:</label>
-        <input type="text" id="birth_date" name="birth_date" required><br><br>
+      <label for="birth_date">Birth Date:</label>
+      <input
+        type="text"
+        id="birth_date"
+        name="birth_date"
+        required
+      /><br /><br />
 
-        <label for="date_of_death">Date of Death:</label>
-        <input type="text" id="date_of_death" name="date_of_death"><br><br>
+      <label for="date_of_death">Date of Death:</label>
+      <input type="text" id="date_of_death" name="date_of_death" /><br /><br />
 
-        <input type="submit" value="Add Author">
+      <input type="submit" value="Add Author" />
     </form>
-</body>
+    <nav>
+      <a href="{{ url_for('home') }}">Back to Home Page</a>
+      <a href="{{ url_for('add_book') }}">Add Book</a>
+    </nav>
+  </body>
 </html>
