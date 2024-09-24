@@ -1,17 +1,6 @@
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import os
 
-app = Flask(__name__)
-
-# ensure directory and file path
-directory = os.path.join(os.getcwd(), "data")
-if not os.path.exists(directory):
-    os.makedirs(directory)
-
-file_path = os.path.join(directory, "library.sqlite")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + file_path
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
 class Author(db.Model):
@@ -55,6 +44,3 @@ class Book(db.Model):
             f"Publication Year: {self.publication_year}"
         )
 
-
-with app.app_context():
-    db.create_all()

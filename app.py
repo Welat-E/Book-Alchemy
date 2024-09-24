@@ -3,13 +3,13 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from data_models import db, Author, Book
 
-
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.urandom(24)
 db_path = os.path.join(os.path.dirname(__file__), "data", "library.sqlite")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
+
 
 
 @app.route("/")
