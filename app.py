@@ -16,14 +16,18 @@ def home():
     """Render the home page with books based on search query."""
     search_query = request.args.get("query", "")
     if search_query:
-        # searching for books where title or isbn matches the search query
         books = Book.query.filter(
             Book.title.ilike(f"%{search_query}%") | Book.isbn.ilike(f"%{search_query}%")
         ).all()
     else:
         books = Book.query.all()
 
+    # Debugging: print the books and their authors
+    for book in books:
+        print(f"Title: {book.title}, Author: {book.author.author_name if book.author else 'No Author'}")
+
     return render_template("home.html", books=books)
+
 
 
 @app.route("/book/<int:book_id>/delete", methods=["POST"])
