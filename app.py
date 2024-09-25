@@ -97,7 +97,7 @@ def add_book():
             isbn=isbn,
             title=title,
             cover_page=cover_page,
-            # author_id=author_id,
+            author_id=author_id,
         )
         db.session.add(new_book)
         db.session.commit()

@@ -36,13 +36,14 @@
     >
       Books List
     </h2>
-
     {% if books %}
     <ul>
       {% for book in books %}
       <li>
-        <strong>{{ book.title }}</strong> by {{ book.author.author_name if
-        book.author else 'Unknown Author' }}
+        <strong>{{ book.title }}</strong>
+        <span style="color: black">
+          by {{ book.author.author_name if book.author else 'Unknown Author' }}
+        </span>
         <!-- Delete Book Form -->
         <form
           action="{{ url_for('delete_book', book_id=book.id) }}"
@@ -62,10 +63,11 @@
     {% with messages = get_flashed_messages() %} {% if messages %}
     <ul>
       {% for message in messages %}
-      <li>{{ message }}</li>
+      <li style="color: black">{{ message }}</li>
       {% endfor %}
     </ul>
     {% endif %} {% endwith %}
+
     <nav>
       <a href="{{ url_for('add_book') }}">Add Book</a>
       <a href="{{ url_for('add_author') }}">Add Author</a>
