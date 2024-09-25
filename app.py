@@ -1,7 +1,8 @@
 import os
 import requests
 from flask import Flask, request, render_template, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
+
+# from flask_sqlalchemy import SQLAlchemy
 from data_models import db, Author, Book
 
 app = Flask(__name__)
@@ -88,7 +89,6 @@ def add_book():
     if request.method == "POST":
         isbn = request.form["isbn"]
         title = request.form["title"]
-        publication_year = request.form["publication_year"]
         author_id = request.form["author_id"]
         cover_page = fetch_data_api(isbn)
 
@@ -96,7 +96,6 @@ def add_book():
         new_book = Book(
             isbn=isbn,
             title=title,
-            publication_year=publication_year,
             cover_page=cover_page,
             # author_id=author_id,
         )
@@ -121,6 +120,10 @@ def sort_books(sort_by):
     else:
         books = Book.query.all()
     return render_template("home.html", books=books)
+
+
+with app.app_context():
+    db.create_all()
 
 
 if __name__ == "__main__":
