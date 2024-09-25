@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from data_models import db, Author, Book
@@ -9,6 +10,18 @@ db_path = os.path.join(os.path.dirname(__file__), "data", "library.sqlite")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
+
+
+def fetch_data_api(isbn):
+    api_url = f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
+    response = requests.get(api_url)
+
+    if response.status_code == 200 and "image" in response.headers.get(
+        "Content-Type", ""
+    ):
+        return api_url
+
+    return "static/cover_image.png"
 
 
 @app.route("/")
@@ -24,10 +37,11 @@ def home():
 
     # Debugging: print the books and their authors
     for book in books:
-        print(f"Title: {book.title}, Author: {book.author.author_name if book.author else 'No Author'}")
+        print(
+            f"Title: {book.title}, Author: {book.author.author_name if book.author else 'No Author'}"
+        )
 
     return render_template("home.html", books=books)
-
 
 
 @app.route("/book/<int:book_id>/delete", methods=["POST"])
@@ -76,12 +90,14 @@ def add_book():
         title = request.form["title"]
         publication_year = request.form["publication_year"]
         author_id = request.form["author_id"]
+        cover_page = fetch_data_api(isbn)
 
         # Create a new Book object with the selected author
         new_book = Book(
             isbn=isbn,
             title=title,
             publication_year=publication_year,
+            cover_page=cover_page,
             # author_id=author_id,
         )
         db.session.add(new_book)

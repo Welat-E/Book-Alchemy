@@ -27,19 +27,32 @@
       <button type="submit">Search</button>
     </form>
 
-    <h2>Books List</h2>
+    <h2
+      style="
+        font-family: 'Brush Script MT', cursive;
+        color: gold;
+        text-shadow: 1px 1px 2px black;
+      "
+    >
+      Books List
+    </h2>
 
     {% if books %}
     <ul>
-        {% for book in books %}
-        <li>
-            <strong>{{ book.title }}</strong> by {{ book.author.author_name if book.author else 'Unknown Author' }}
-            <!-- Delete Book Form -->
-            <form action="{{ url_for('delete_book', book_id=book.id) }}" method="post" style="display: inline">
-                <button type="submit">Delete Book</button>
-            </form>
-        </li>
-        {% endfor %}
+      {% for book in books %}
+      <li>
+        <strong>{{ book.title }}</strong> by {{ book.author.author_name if
+        book.author else 'Unknown Author' }}
+        <!-- Delete Book Form -->
+        <form
+          action="{{ url_for('delete_book', book_id=book.id) }}"
+          method="post"
+          style="display: inline"
+        >
+          <button type="submit">Delete Book</button>
+        </form>
+      </li>
+      {% endfor %}
     </ul>
     {% else %}
     <p>No books found.</p>

@@ -30,7 +30,8 @@ class Book(db.Model):
     title = db.Column(db.String)
     publication_year = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey("author.id"))
-    author = db.relationship("Author", backref="books")  #add relationship
+    author = db.relationship("Author", backref="books")  # add relationship
+    cover_page = db.Column(db.String, nullable=True)
 
     def __repr__(self):
         return (
@@ -43,4 +44,3 @@ class Book(db.Model):
             f"Book Title: {self.title}, ISBN: {self.isbn}, "
             f"Publication Year: {self.publication_year}"
         )
-
