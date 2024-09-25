@@ -9,6 +9,29 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+    <style>
+      .book-record {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: rgba(0, 0, 0, 0.20);
+      }
+
+      .book-record img {
+        margin-right: 15px;
+        width: 75px;
+        height: 100px;
+      }
+
+      .book-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .book-details span {
+        margin-bottom: 5px;
+      }
+    </style>
   </head>
   <body>
     <h1
@@ -36,19 +59,30 @@
     >
       Books List
     </h2>
+    <li class="book-record">...</li>
+
     {% if books %}
     <ul>
       {% for book in books %}
-      <li>
-        <strong>{{ book.title }}</strong>
-        <span style="color: black">
-          by {{ book.author.author_name if book.author else 'Unknown Author' }}
-        </span>
+      <li class="book-record">
+        <!-- Cover Image -->
+        <img src="{{ book.cover_page }}" alt="Cover Image" />
+
+        <!-- Book Details -->
+        <div class="book-details">
+          <strong>{{ book.title }}</strong>
+          <span style="color: white">
+            by {{ book.author.author_name if book.author else 'Unknown Author'
+            }}
+          </span>
+          <span>ISBN: {{ book.isbn }}</span>
+        </div>
+
         <!-- Delete Book Form -->
         <form
           action="{{ url_for('delete_book', book_id=book.id) }}"
           method="post"
-          style="display: inline"
+          style="margin-left: auto"
         >
           <button type="submit">Delete Book</button>
         </form>

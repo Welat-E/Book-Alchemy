@@ -122,8 +122,8 @@ def sort_books(sort_by):
     return render_template("home.html", books=books)
 
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 
 if __name__ == "__main__":

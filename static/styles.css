@@ -93,7 +93,7 @@ li {
 }
 
 strong {
-  color: #4a3f35;  /* Warm brown color for bold text (like book titles) */
+  color: white;  /* Warm brown color for bold text (like book titles) */
 }
 
 /* Flash messages (for success or error alerts) */
